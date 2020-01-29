@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Oppimispäiväkirja</title>
+    <link href="continuousproject.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <header id="header">
+        <h1>Study Journal</h1>
+    </header>
+    <div id="welcome">
+        <h3>Welocome! You can use me as a subcontractor for your brain!</h3>
+    </div>
+
+    <div id="vasen">Home</div>
+    <div id="kesk">Saved Courses</div>
+    <div id="oikea">Contact</div>
+
+
+    <div id="forms">
+        <section id="question">
+            <form method="POST">
+                <h2>Enter course Data Below</h2>
+                <label for="ID">UUID</label>
+                <br>
+                <input id="ID" type="text" name="ID" placeholder="1">
+                <br>
+                <label for="title">Title</label>
+                <br>
+                <input id="title" type="text" name="title" placeholder="HTML">
+                <br>
+                <label for="timeMaster">Time To Master</label>
+                <br>
+                <input id="timeMaster" type="number" name="timeMaster" placeholder="4">
+                <br>
+                <label for="timeSpent">Time Spent</label>
+                <br>
+                <input id="timeSpent" type="number" name="timeSpent" placeholder="5">
+                <br>
+                <label for="source">Source</label>
+                <br>
+                <input id="source" type="text" name="source" placeholder="Google it!">
+                <br>
+                <h3>Starting Date</h3>
+                <label for="sDay">Day</label>
+                <label for="sMonth">Month</label>
+                <label for="sYear">Year</label>
+                <br>
+                <input id="sDay" type="number" name="sDay" placeholder=1>
+                <input id="sMonth" type="number" name="sMonth" placeholder=1>
+                <input id="sYear" type="number" name="sYear" placeholder=2020>
+                <br>
+                <label for="started">Started</label>
+                <br>
+                <input type="checkbox" name="started" id="started">
+                <br>
+                <label for="completed">Completed, I can have a cookie now.</label>
+                <br>
+                <input type="checkbox" name="completed" id="completed">
+                <br>
+                <h3>Completion Date</h3>
+                <label id="eDay" for="eDay">Day</label>
+                <label id="eMonth" for="eMonth">Month</label>
+                <label id="eYear" for="eYear">Year</label>
+                <br>
+                <input id="eDay" type="number" name="eDay" placeholder=1>
+                <input id="eMonth" type="number" name="eMonth" placeholder=1>
+                <input id="eYear" type="number" name="eYear" placeholder=2020>
+                <br>
+                <label for="priority">Priority</label>
+                <input list="prio" id="priority" name="priority">
+                <datalist id="prio">
+                    <option value="Urgent"></option>
+                    <option value="Normal"></option>
+                    <option value="Life-Long Learning"></option>
+                </datalist>
+                <br>
+                <input class="field" id="nappi" type="button" onclick=addCourse() value="Add course">
+                </input>
+                <ul id="ulostulo">
+                </ul>
+            </form>
+
+        </section>
+    </div>
+    <script>
+
+        let id = document.getElementById('ID');
+        let title = document.getElementById('title');
+        let timeMaster = document.getElementById('timeMaster');
+        let timeSpent = document.getElementById('timeSpent');
+        let source = document.getElementById('source');
+        let sDay = document.getElementById('sDay');
+        let sMonth = document.getElementById('sMonth');
+        let sYear = document.getElementById('sYear');
+        let started = document.getElementById('started');
+        let complete = document.getElementById('completed');
+        let eDay = document.getElementById('eDay');
+        let eMonth = document.getElementById('eMonth');
+        let eYear = document.getElementById('eYear');
+        let priority = document.getElementById('priority');
+        //const nappi = document.getElementById('nappi');
+        let courses = [];
+
+        function addCourse() {
+            courses.push({
+                itemID: id.value, itemTitle: title.value, itemTimeMaster: timeMaster.value,
+                itemTimeSpent: timeSpent.value, itemSource: source.value,
+                itemSDay: sDay.value, itemSMonth: sMonth.value, itemSYear: sYear.value,
+                itemStarted: started.value, itemComplete: complete.value, itemEDay: eDay.value,
+                itemEMonth: eMonth.value, itemEYear: eYear.value, itemPriority: priority.value,
+            });
+            console.log(courses);
+            for (let course of courses) {
+                const uusli = document.createElement('li');
+                const teksti = document.createTextNode(`Course ID:${course.itemID}, 
+                Course title: ${course.itemTitle}, Time to master the course: ${course.itemTimeMaster}, 
+                Time spent on the course: ${course.itemTimeSpent},Source or extra info about the course: 
+                ${course.itemSource}, Course started:${course.itemSDay},${course.itemSMonth},
+                ${course.itemSYear}, Course started: ${course.itemStarted},
+                Course completed: ${course.itemComplete}, Course finished on: 
+                ${course.itemEDay}, ${course.itemEMonth}, ${course.itemEYear},
+                Priority: ${course.itemPriority}`)
+                ulostulo.appendChild(uusli);
+                uusli.append(teksti);
+            }
+        }
+
+        //!!!!Remember to also use local storage to save the courses with key value pairs!!!!!
+
+
+
+
+
+    </script>
+
+</body>
+
+</html>
